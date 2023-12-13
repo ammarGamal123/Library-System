@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -24,8 +24,8 @@ namespace LibrarySystem
         static List<string> nameList = new List<string>();
         static HashSet<int> idSet = new HashSet<int>();
         static HashSet<string> nameSet = new HashSet<string>();
-        static Dictionary<Tuple<int, string>, bool> both = new Dictionary<Tuple<int, string>, bool>();
-
+        // this is list of tuples , each tuple continains (int idUser , string nameUser)
+        static List <(int, string)> both = new List<(int, string)>();
 
         internal void addBook ()
         {
@@ -54,6 +54,10 @@ namespace LibrarySystem
                 nameSet.Add(nameUser);
                 idList.Add(idUser);
                 nameList.Add(nameUser);
+               
+                var val = (idUser, nameUser);
+                both.Add(val);
+
                 Console.WriteLine("Added Succefully\n");
             }
             else

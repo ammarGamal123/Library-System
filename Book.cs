@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibrarySystem
 {
-    internal class Book
+    public class Book
     {
         private int id;
         private string name;
@@ -20,42 +20,46 @@ namespace LibrarySystem
         public int Quantity { get; set; }
         
 
-        static List<int> idList = new List<int>();
-        static List<string> nameList = new List<string>();
-        static HashSet<int> idSet = new HashSet<int>();
-        static HashSet<string> nameSet = new HashSet<string>();
-        // this is list of tuples , each tuple continains (int idUser , string nameUser)
-        static List <(int, string)> both = new List<(int, string)>();
-
+        public static List<int> idList = new List<int>();
+        public static List<string> nameBookList = new List<string>();
+        public static List<int> quantList = new List<int>();
+        public static HashSet<int> idSet = new HashSet<int>();
+        public static HashSet<string> nameSet = new HashSet<string>();
+        // this is list of tuples , each tuple continains (int idBook , string nameBook)
+        public static List <(int, string)> both = new List<(int, string)>();
+        public static Dictionary<string, int> quantitBookMap = new Dictionary<string , int>();
+        
+        // Completed
         internal void addBook ()
         {
-            int idUser;
+            int idBook;
             
-            int quantityUser;
+            int quantBook;
 
             do
             {
                 Console.WriteLine("Enter Book ID:");
-            } while (!int.TryParse(Console.ReadLine(), out idUser));
+            } while (!int.TryParse(Console.ReadLine(), out idBook));
 
             Console.WriteLine("Enter Book Name:");
             
-            string nameUser = Console.ReadLine();
+            string nameBook = Console.ReadLine();
 
             do
             {
                 Console.WriteLine("Enter Book Quantity:");
-            } while (!int.TryParse(Console.ReadLine(),out quantityUser));
+            } while (!int.TryParse(Console.ReadLine(),out quantBook));
             
             
-            if (!idSet.Contains(id) && !nameSet.Contains(nameUser))
+            if (!idSet.Contains(id) && !nameSet.Contains(nameBook))
             {
-                idSet.Add(idUser);
-                nameSet.Add(nameUser);
-                idList.Add(idUser);
-                nameList.Add(nameUser);
-               
-                var val = (idUser, nameUser);
+                idSet.Add(idBook);
+                nameSet.Add(nameBook);
+                idList.Add(idBook);
+                nameBookList.Add(nameBook);
+                quantList.Add(quantBook);
+                quantitBookMap[nameBook] ++;
+                var val = (idBook, nameBook);
                 both.Add(val);
 
                 Console.WriteLine("Added Succefully\n");
@@ -86,6 +90,9 @@ namespace LibrarySystem
                 menu.Menu1();
             }
         }
+        
+        
+        // Completed
         internal void searchBook()
         {
             Console.WriteLine("Enter Book Name:");
@@ -93,19 +100,19 @@ namespace LibrarySystem
             List<string> searchResults = new List<string>();
             
             
-                bool check = true;
-            for (int i = 0; i < nameList?.Count; i++)
+            bool check = true;
+            for (int i = 0; i < nameBookList?.Count; i++)
             {
-                if (word?.Length <= nameList[i].Length)
+                if (word?.Length <= nameBookList[i].Length)
                 {
                     check = true;
                     for (int j = 0; j < word?.Length; j++)
                     {
-                        check &= nameList[i][j] == word[j];
+                        check &= nameBookList[i][j] == word[j];
                     }
                     if (check)
                     {
-                        searchResults.Add(nameList[i]);
+                        searchResults.Add(nameBookList[i]);
                     }
                 }
             }
@@ -142,26 +149,79 @@ namespace LibrarySystem
             }
 
         }
+        
+        
+        // Not Completed Yet
         internal void displayUsersBorrowBooks()
         {
-
+            
         }
+        
+        
+        
         internal void displayBooksByID()
         {
-
-        }
-        internal void displayBooksByNames()
-        {
-            for (int i = 0;i < nameList?.Count;i++)
+            for (int i = 0; i < idList?.Count(); i++)
             {
-                Console.WriteLine(nameList[i]);
+                Console.WriteLine($"{i + 1}) {idList[i]}");
+            }
+            
+
+            byte choice;
+            do
+            {
+                Console.WriteLine("Enter choice:");
+                Console.WriteLine("1) Display book ID more time");
+                Console.WriteLine("2) Back");
+
+            }while (!byte.TryParse(Console.ReadLine(), out choice));
+
+            Menu menu = new Menu();
+            Book book = new Book();
+            
+            
+            if (choice == 1) {
+                book.displayBooksByID();
+            }
+            else
+            {
+                menu.Menu1();
             }
         }
         
+        
+        // Completed
+        internal void displayBooksByNames()
+        {
+            for (int i = 0; i < nameBookList?.Count(); i++)
+            {
+                Console.WriteLine($"{i + 1}) {nameBookList[i]}");
+            }
+            
 
+            byte choice;
+            do
+            {
+                Console.WriteLine("Enter choice:");
+                Console.WriteLine("1) Display book names one more time");
+                Console.WriteLine("2) Back");
 
+            }while (!byte.TryParse(Console.ReadLine(), out choice));
 
-
+            Menu menu = new Menu();
+            Book book = new Book();
+            
+            
+            if (choice == 1) {
+                book.displayBooksByNames();
+            }
+            else
+            {
+                menu.Menu1();
+            }
+            
+        }
+        
 
 
         // display attributes

@@ -1,0 +1,15 @@
+/home/ammarhammad/Documents/dotNetProjects/Library-System/bin/Debug/net7.0/LibrarySystem
+/home/ammarhammad/Documents/dotNetProjects/Library-System/bin/Debug/net7.0/LibrarySystem.deps.json
+/home/ammarhammad/Documents/dotNetProjects/Library-System/bin/Debug/net7.0/LibrarySystem.runtimeconfig.json
+/home/ammarhammad/Documents/dotNetProjects/Library-System/bin/Debug/net7.0/LibrarySystem.dll
+/home/ammarhammad/Documents/dotNetProjects/Library-System/bin/Debug/net7.0/LibrarySystem.pdb
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.csproj.AssemblyReference.cache
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.GeneratedMSBuildEditorConfig.editorconfig
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.AssemblyInfoInputs.cache
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.AssemblyInfo.cs
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.csproj.CoreCompileInputs.cache
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.dll
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/refint/LibrarySystem.dll
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.pdb
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/LibrarySystem.genruntimeconfig.cache
+/home/ammarhammad/Documents/dotNetProjects/Library-System/obj/Debug/net7.0/ref/LibrarySystem.dll

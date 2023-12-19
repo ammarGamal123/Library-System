@@ -3,7 +3,8 @@ My Library System Project
 simple one for applying OOP concepts
 
 9 Basic Features for the probject which is :
-Console.WriteLine("Library Menu:");
+    Library Menu:
+    
                 1) Add book");
                 2) Search books by prefix
                 3) Print who borrows books by name

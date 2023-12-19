@@ -3,15 +3,19 @@ My Library System Project
 simple one for applying OOP concepts
 
 9 Basic Features for the probject which is :
-    Library Menu:
+    Library Menu
+     <ul>
+        
     
-                1) Add book");
-                2) Search books by prefix
-                3) Print who borrows books by name
-                4) Print books by ID
-                5) Print books by name
-                6) Add user");
-                7) User borrows books
-                8) User returns books
-                9) Print Users
-                10) Exit
+           <li>1) Add book")</li>
+           <li>2) Search books by prefix</li>
+           <li>3) Print who borrows books by name</li>
+           <li>4) Print books by ID</li>
+           <li>5) Print books by name</li>
+           <li>6) Add user")</li>
+           <li>7) User borrows books</li>
+           <li>8) User returns books</li>
+           <li>9) Print Users</li>
+           <li>10) Exit</li>
+
+    </ul>

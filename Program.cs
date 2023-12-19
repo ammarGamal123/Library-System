@@ -7,17 +7,10 @@ namespace LibrarySystem
         {
             Menu m = new Menu();
             
-        // Display the screen 
+         // Began the Project
             m.Menu1();
 
-
-
-
             
-
-            
-
-
         }
     }
 }

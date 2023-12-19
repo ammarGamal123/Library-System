@@ -23,10 +23,12 @@ namespace LibrarySystem
         public static List<int> idList = new List<int>();
         public static List<string> nameBookList = new List<string>();
         public static List<int> quantList = new List<int>();
-        public static HashSet<int> idSet = new HashSet<int>();
-        public static HashSet<string> nameSet = new HashSet<string>();
+        public static HashSet<int> idBookSet = new HashSet<int>();
+        public static HashSet<string> nameBookSet = new HashSet<string>();
         // this is list of tuples , each tuple continains (int idBook , string nameBook)
-        public static List <(int, string)> both = new List<(int, string)>();
+        public static List <(int, string)> bothSortedByID = new List<(int, string)>();
+        public static List <(string, int)> bothSortedByName = new List<(string, int)>();
+
         public static Dictionary<string, int> quantitBookMap = new Dictionary<string , int>();
         
         // Completed
@@ -51,16 +53,20 @@ namespace LibrarySystem
             } while (!int.TryParse(Console.ReadLine(),out quantBook));
             
             
-            if (!idSet.Contains(id) && !nameSet.Contains(nameBook))
+            if (!idBookSet.Contains(id) && !nameBookSet.Contains(nameBook))
             {
-                idSet.Add(idBook);
-                nameSet.Add(nameBook);
+                idBookSet.Add(idBook);
+                nameBookSet.Add(nameBook);
                 idList.Add(idBook);
                 nameBookList.Add(nameBook);
                 quantList.Add(quantBook);
-                quantitBookMap[nameBook] ++;
-                var val = (idBook, nameBook);
-                both.Add(val);
+                quantitBookMap.Add(nameBook , quantBook);
+                var valByID = (idBook, nameBook);
+                bothSortedByID.Add(valByID);
+                
+                
+                var valByName = (nameBook, idBook);
+                bothSortedByName.Add(valByName);
 
                 Console.WriteLine("Added Succefully\n");
             }
@@ -97,6 +103,10 @@ namespace LibrarySystem
         {
             Console.WriteLine("Enter Book Name:");
             string word = Console.ReadLine();
+
+            Console.WriteLine("\n\n");
+            
+            
             List<string> searchResults = new List<string>();
             
             
@@ -128,14 +138,14 @@ namespace LibrarySystem
             }
             else
             {
-                Console.WriteLine("No such prefix matches any books");
+                Console.WriteLine("No such prefix matches any books\n");
             }
             byte choice;
             do
             {
-                Console.WriteLine("Enter choice:");
+                Console.WriteLine("Enter choice:\n");
                 Console.WriteLine("1) Search one more time");
-                Console.WriteLine("2) Back");
+                Console.WriteLine("2) Back\n");
 
             }while (!byte.TryParse(Console.ReadLine(), out choice));
 
@@ -151,28 +161,53 @@ namespace LibrarySystem
         }
         
         
-        // Not Completed Yet
+        // Completed 
         internal void displayUsersBorrowBooks()
         {
             
+            for (int i = 0; i < User.nameUserList?.Count; i++)
+            {
+                Console.WriteLine($"User Name: {User.nameUserList[i]}");
+            }
+            
+            byte choice;
+            Console.WriteLine("1) Display Users who borrowed books one more time");
+            Console.WriteLine("2) Back");
+
+            do
+            {
+                Console.WriteLine("Enter choice\n");
+            } while (!byte.TryParse(Console.ReadLine(), out choice));
+
+            if (choice == 1)
+            {
+                displayUsersBorrowBooks();
+            }
+            else
+            {
+                Menu menu = new Menu();
+                menu.Menu1();
+            }
         }
         
         
         
+        // Completed
         internal void displayBooksByID()
         {
-            for (int i = 0; i < idList?.Count(); i++)
-            {
-                Console.WriteLine($"{i + 1}) {idList[i]}");
-            }
             
 
+            for (int i = 0; i < bothSortedByID?.Count; i++)
+            {
+                Console.WriteLine($"Book ID: {bothSortedByID[i].Item1} , Book Name {bothSortedByID[i].Item2}");
+            }
+            
             byte choice;
             do
             {
-                Console.WriteLine("Enter choice:");
+                Console.WriteLine("Enter choice:\n");
                 Console.WriteLine("1) Display book ID more time");
-                Console.WriteLine("2) Back");
+                Console.WriteLine("2) Back\n");
 
             }while (!byte.TryParse(Console.ReadLine(), out choice));
 
@@ -193,9 +228,11 @@ namespace LibrarySystem
         // Completed
         internal void displayBooksByNames()
         {
-            for (int i = 0; i < nameBookList?.Count(); i++)
+
+
+            for (int i = 0; i < bothSortedByName?.Count; i++)
             {
-                Console.WriteLine($"{i + 1}) {nameBookList[i]}");
+                Console.WriteLine($"Book Name: {bothSortedByName[i].Item1} , Book ID: {bothSortedByName[i].Item2}");
             }
             
 

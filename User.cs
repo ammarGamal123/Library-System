@@ -25,6 +25,8 @@ namespace LibrarySystem
         public static HashSet<string> emailUserSet = new HashSet<string>();
         
         
+        
+        // Completed
         internal void addUser()
         {
             int idUser;
@@ -51,15 +53,16 @@ namespace LibrarySystem
                 idUserList.Add(idUser);
                 nameUserList.Add(nameUser);
                 emailUserList.Add(emailUser);
+                Console.WriteLine("The User Added Successfully\n");
             }
             else
             {
-                Console.WriteLine("Either the id or book name or email already existed");
+                Console.WriteLine("Either the id or book name or email already existed\n");
             }
 
 
             byte choice;
-            Console.WriteLine("*********************************");
+            Console.WriteLine("*************************************\n");
             Console.WriteLine("1) Add Another User:");
             Console.WriteLine("2) Back");
 
@@ -85,36 +88,47 @@ namespace LibrarySystem
 
 
 
-
+        // Completed
         internal void userBorrowBook()
         {
             Console.WriteLine("Enter User Name");
             string userBorrowName = Console.ReadLine();
-            
-            
-            Console.WriteLine("Enter Book Name");
-            string bookBorrowName = Console.ReadLine();
 
-            if (nameUserSet.Contains(userBorrowName) && Book.nameBookList.Contains(bookBorrowName))
+            
+            
+            Console.WriteLine("Here is a list of available books: \n");
+
+            for (int i = 0; i < Book.nameBookList?.Count; i++)
+            {
+                Console.WriteLine(Book.nameBookList[i]);
+            }
+            
+            
+            Console.WriteLine("Enter Book Name\n\n");
+            string bookBorrowName = Console.ReadLine();
+            
+
+            if (nameUserSet.Contains(userBorrowName) && Book.nameBookSet.Contains(bookBorrowName))
             {
                 if (Book.quantitBookMap[bookBorrowName] > 0)
                 {
                     Book.quantitBookMap[bookBorrowName]--;
+                    Console.WriteLine($"User {userBorrowName} borrowed successfully\n\n");
                 }
                 else
                 {
-                    Console.WriteLine("The book is not valid");
+                    Console.WriteLine("The book is not valid\n");
                 }
             }
             else
             {
-                Console.WriteLine("Sorry please enter valid user name and book name");
+                Console.WriteLine("Sorry please enter valid user name and book name\n");
             }
             
             byte choice;
-            Console.WriteLine("*********************************");
-            Console.WriteLine("1) Add Another User:");
-            Console.WriteLine("2) Back");
+            Console.WriteLine("***************************************\n");
+            Console.WriteLine("1) Add another user to borrow another book");
+            Console.WriteLine("2) Back\n");
 
             do
             {
@@ -123,7 +137,7 @@ namespace LibrarySystem
 
             if (choice == 1)
             {
-                addUser();
+                userBorrowBook();
             }
             else
             {
@@ -132,8 +146,81 @@ namespace LibrarySystem
             }
             
         }
-        internal void userReturnBook() { }
-        internal void displayUsers() { }
+
+
+    
+        
+        // Completed
+        internal void userReturnBook()
+        {
+            Console.WriteLine("Enter User Name :");
+            string userName = Console.ReadLine();
+
+            Console.WriteLine("Enter Book Name :");
+            string bookName = Console.ReadLine();
+
+
+            if (nameUserSet.Contains(userName) && Book.nameBookSet.Contains(bookName))
+            {
+                Book.quantitBookMap[bookName] += 1;
+                Console.WriteLine("The book returned successfully\n");
+            }
+            else
+            {
+                Console.WriteLine("Either the user name or book name is not correct\n");
+            }
+            
+            
+            
+            Console.WriteLine("1) Return another book ");
+            Console.WriteLine("2) Back\n");
+            
+            byte choice;
+            do
+            {
+                Console.WriteLine("Enter choice\n");
+            } while (!byte.TryParse(Console.ReadLine(), out choice));
+
+            if (choice == 1)
+            {
+                userReturnBook();
+            }
+            else
+            {
+                Menu menu = new Menu();
+                menu.Menu1();
+            }
+        }
+        
+        
+        
+        // Completed
+        internal void displayUsers()
+        {
+            for (int i = 0; i < nameUserList?.Count; i++)
+            {
+                Console.WriteLine($"Name: {nameUserList[i]} , ID: {idUserList[i]} , Email: {emailUserList[i]} ");
+            }
+
+            byte choice;
+            Console.WriteLine("1) Display Users one more time");
+            Console.WriteLine("2) Back");
+
+            do
+            {
+                Console.WriteLine("Enter choice\n");
+            } while (!byte.TryParse(Console.ReadLine(), out choice));
+
+            if (choice == 1)
+            {
+                displayUsers();
+            }
+            else
+            {
+                Menu menu = new Menu();
+                menu.Menu1();
+            }
+        }
 
 
 
